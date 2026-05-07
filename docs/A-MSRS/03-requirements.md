@@ -6,7 +6,7 @@ Bagian ini menspesifikasikan seluruh persyaratan produk perangkat lunak yang dap
 
 ## 3.0 Standar dan Aturan Penulisan Persyaratan (Referensi Internal)
 
-Bagian ini merupakan referensi teknis wajib bagi seluruh penulis dokumen SDD untuk menjamin konsistensi format dan keterlacakan (traceability). Bagian ini bersifat informatif untuk fase penyusunan dan wajib dihapus dari versi final dokumen setelah seluruh butir persyaratan selesai disusun.
+Bagian ini merupakan referensi teknis wajib bagi seluruh penulis dokumen SDD untuk menjamin konsistensi format dan keterlacakan (traceability). **Bagian ini bersifat informatif untuk fase penyusunan dan wajib dihapus dari versi final dokumen setelah seluruh butir persyaratan selesai disusun.**
 
 **Perintah (Instructions)**
 
