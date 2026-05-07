@@ -1,56 +1,128 @@
-# 2. Product Overview
+# BAB 2: PRODUCT OVERVIEW
 
-## 2.1 Product Perspective
-**Smart Event Analytics Platform (SEAP)** adalah sebuah produk baru yang dirancang untuk mendigitalisasi dan memusatkan ekosistem manajemen acara (seperti *workshop*, seminar, dan kuliah tamu) di lingkungan kampus. Sebelumnya, pengelolaan acara seringkali terfragmentasi atau dilakukan secara manual. 
+Bagian ini memberikan latar belakang dan konteks yang memengaruhi persyaratan produk. Bab ini menjelaskan di mana posisi sistem dalam ekosistem yang lebih luas, fungsi utamanya, batasan desain, karakteristik pengguna, serta asumsi-asumsi yang mendasari pengembangan sistem.
 
-SEAP dibangun menggunakan pendekatan *Microservices Architecture* mandiri yang diakses melalui antarmuka web. Sistem ini berinteraksi dengan pengguna (Admin dan Mahasiswa) melalui sebuah *API Gateway* (Nginx) yang meneruskan permintaan ke tujuh layanan internal (Auth, User, Event, Registration, Feedback, Analytics, dan Recommendation). Meskipun pada rilis MVP sistem ini beroperasi dengan basis data pengguna bawaannya sendiri (PostgreSQL), arsitektur SEAP telah disiapkan agar kedepannya (*downstream*) dapat berintegrasi dengan sistem *Single Sign-On* (SSO) internal kampus. 
+---
 
-## 2.2 Product Functions
-Sistem SEAP memfasilitasi fungsionalitas utama berikut, yang dikelompokkan berdasarkan kapabilitas domain operasionalnya:
+## 2.1 Perspektif Produk (Product Perspective)
 
-*   **Manajemen Autentikasi & Pengguna:** Registrasi dan login pengguna dengan otorisasi berbasis peran (RBAC) menggunakan *JSON Web Token* (JWT).
-*   **Manajemen Siklus Hidup Acara:** Memungkinkan Admin untuk membuat, memperbarui, dan mempublikasikan katalog acara kampus.
-*   **Registrasi & Pelacakan Partisipasi:** Memungkinkan mahasiswa untuk mencari dan mendaftar acara, serta mencatat status keikutsertaan mereka.
-*   **Pengumpulan Umpan Balik (Feedback):** Fasilitas bagi mahasiswa untuk memberikan *rating* dan komentar setelah acara selesai.
-*   **Dasbor Analitik Acara:** Memproses dan menyajikan statistik acara secara agregat (seperti total peserta dan rata-rata *rating*) kepada Admin.
-*   **Sistem Rekomendasi Cerdas:** Menyajikan daftar acara yang dipersonalisasi untuk setiap mahasiswa berdasarkan riwayat partisipasi, preferensi kategori, dan *rating* menggunakan algoritma *Collaborative Filtering* (dengan dukungan AHP opsional).
+**Perintah (Instructions)**
 
-## 2.3 Product Constraints
-Perancangan dan implementasi SEAP dibatasi oleh kondisi dan mandat teknis berikut:
-*   **Arsitektur & Infrastruktur:** Sistem wajib dibangun menggunakan pendekatan *microservices* dan seluruh layanannya harus dikemas (di- *deploy*) menggunakan kontainer **Docker**.
-*   **Teknologi Basis Data:** Sistem wajib menggunakan **PostgreSQL** sebagai basis data relasional utama untuk persistensi semua *service*.
-*   **Tumpukan Teknologi Kecerdasan Buatan:** Layanan analitik dan rekomendasi (AI/ML) wajib menggunakan ekosistem **Python** (khususnya *library* Pandas dan Scikit-learn).
-*   **Keamanan & Jaringan:** Semua komunikasi eksternal dari klien menuju *API Gateway* wajib dienkripsi menggunakan protokol **HTTPS**. Sistem wajib menerapkan pembatasan laju permintaan (*Rate Limiting*) untuk mencegah eksploitasi.
+Jelaskan konteks dan asal-usul produk, apakah sistem ini merupakan produk baru, pengganti sistem lama, atau bagian dari keluarga produk yang sudah ada. Jika produk merupakan bagian dari ekosistem yang lebih besar, uraikan hubungan antarkomponen, antarmuka eksternal, dan dependensi kunci. Sertakan detail mengenai kepemilikan sistem, Service Level Agreements (SLAs), dan model dukungan operasional. Gunakan diagram Mermaid tipe 'graph' untuk menggambarkan diagram konteks tingkat tinggi (High-Level Context Diagram) yang menunjukkan batas kepemilikan dan aliran data dengan sistem upstream/downstream agar pembaca memahami batasan tanggung jawab sistem.
 
-## 2.4 User Characteristics
-Sistem ini dirancang untuk dua kelompok pengguna utama:
+**Contoh (Example)**
 
-1.  **Admin (Panitia Acara / Staf Kampus):** 
-    *   *Karakteristik:* Memiliki tingkat literasi komputer menengah. 
-    *   *Tujuan:* Mengelola acara secara efisien, melacak jumlah pendaftar, dan melihat laporan analitik (keberhasilan acara) untuk pelaporan institusi. 
-    *   *Kebutuhan:* Dasbor antarmuka yang informatif, navigasi yang jelas, dan kemudahan dalam mengekspor data laporan.
-2.  **Mahasiswa (Pengguna Akhir):** 
-    *   *Karakteristik:* *Digital native*, sangat terbiasa dengan aplikasi web modern dan media sosial. Mengakses platform dengan frekuensi tinggi saat awal semester atau saat ada pekan acara kampus.
-    *   *Tujuan:* Mencari acara yang relevan dengan minat mereka, mendaftar dengan cepat, dan mendapatkan sertifikat/poin partisipasi.
-    *   *Kebutuhan:* Antarmuka yang responsif (terutama di peramban seluler/ *mobile web*), pengalaman pendaftaran dengan *minim-klik*, dan rekomendasi yang akurat.
+Sistem  merupakan modul inti baru dalam ekosistem  yang dirancang untuk menggantikan modul legacy . Sistem ini bertindak sebagai aggregator data pusat yang menghubungkan  dengan . Kepemilikan teknis berada di bawah tim  dengan target ketersediaan layanan (SLA) sebesar 99.9% pada jam operasional bisnis.
 
-## 2.5 Assumptions and Dependencies
-*   **Asumsi:**
-    *   Pengguna mengakses platform menggunakan peramban web modern (seperti Chrome, Safari, Edge) dengan koneksi internet yang relatif stabil.
-    *   Infrastruktur *server* (VPS/Cloud) yang disediakan oleh kampus memiliki spesifikasi komputasi yang memadai untuk menjalankan setidaknya 8 *container service* secara simultan beserta metrik *monitoring* (Prometheus + Grafana).
-*   **Dependensi:**
-    *   Kelancaran *routing* API sangat bergantung pada konfigurasi **Nginx** sebagai *API Gateway*.
-    *   Fitur analitik bergantung pada ketersediaan dan integritas data historis di tabel `registrations` dan `feedbacks`. Jika data ini kosong/korup, kualitas *Recommendation Engine* akan menurun drastis (*Cold Start Problem*).
+```mermaid
+graph LR
+    subgraph "Ekosistem Enterprise"
+        A[Sistem Upstream A] --> B(<Nama Sistem>)
+        B --> C[Sistem Downstream B]
+        B --> D[Database Warehouse]
+    end
+    B -.-> E{Layanan Auth Pusat}
+    style B fill:#f9f,stroke:#333,stroke-width:4px
+```
 
-## 2.6 Apportioning of Requirements
-Berikut adalah alokasi pemetaan fitur utama terhadap fase rilis produk:
+---
 
-| Fitur / Modul | Target Rilis | Keterangan |
-| :--- | :--- | :--- |
-| **Auth & Event Management** | v1.0.0 (MVP) | Kebutuhan dasar berjalannya sistem. |
-| **Registration & Feedback Service** | v1.0.0 (MVP) | Kebutuhan interaksi pengguna. |
-| **Basic Dashboard Analytics** | v1.0.0 (MVP) | Agregasi data peserta dan rata-rata *rating*. |
-| **Collaborative Filtering Recommendation** | v1.0.0 (MVP) | Mesin rekomendasi tahap pertama. |
-| **Integrasi SSO Kampus** | Ditangguhkan (v2.0) | Membutuhkan koordinasi dengan Biro IT Kampus. |
-| **AI-Based Sentiment Analysis** | Ditangguhkan (v2.0) | Memerlukan NLP tingkat lanjut untuk analisis teks *feedback*. |
-| **Aplikasi Mobile Native (iOS/Android)** | Ditangguhkan (v3.0) | MVP difokuskan pada antarmuka *Web Responsive*. |
+## 2.2 Fungsi Produk (Product Functions)
+
+**Perintah (Instructions)**
+
+Berikan ringkasan singkat mengenai area fungsional atau fitur utama yang disediakan oleh produk bagi pengguna atau sistem lain. Fokuskan pada "apa" yang dilakukan sistem secara garis besar, tanpa masuk ke detail perilaku teknis, validasi data, atau edge cases yang akan dibahas pada bab persyaratan detail. Gunakan daftar poin (bullet points) antara 5 hingga 10 poin untuk mengelompokkan fungsi-fungsi terkait secara logis. Jika diperlukan, sertakan diagram Use Case sederhana menggunakan Mermaid untuk memvisualisasikan interaksi aktor utama dengan fungsi sistem.
+
+**Contoh (Example)**
+
+Sistem  menyediakan kapabilitas utama sebagai berikut:
+
+- Manajemen Identitas: Melakukan otentikasi dan otorisasi pengguna berbasis peran (RBAC).
+- Pemrosesan Transaksi: Mengelola alur kerja transaksi dari inisiasi hingga penyelesaian (settlement).
+- Pelaporan Real-time: Menyediakan dasbor visualisasi data untuk aktivitas operasional harian.
+- Integrasi API: Menyediakan endpoint RESTful bagi sistem pihak ketiga untuk sinkronisasi data.
+
+```mermaid
+flowchart LR
+
+    A[Admin]
+    U[User]
+
+    subgraph SYS["Sistem <Nama Sistem>"]
+        UC1([Kelola Data])
+        UC2([Lihat Laporan])
+        UC3([Audit Log])
+    end
+
+    A --> UC1
+    A --> UC2
+    A --> UC3
+
+    U --> UC2
+```
+
+---
+
+## 2.3 Batasan Produk (Product Constraints)
+
+**Perintah (Instructions)**
+
+Definisikan batasan kontekstual atau kondisi yang membentuk desain dan implementasi sistem. Cantumkan batasan seperti antarmuka yang diwajibkan, tumpukan teknologi (tech stack) yang harus digunakan, kewajiban regulasi (seperti GDPR atau ISO), standar kualitas layanan (QoS), batasan perangkat keras, serta kebijakan organisasi. Nyatakan batasan sebagai pernyataan "harus" (must) yang dapat diverifikasi. Bedakan antara batasan eksternal yang tidak dapat diubah dan batasan internal yang diputuskan oleh organisasi. Hindari mencantumkan keputusan desain kecuali jika keputusan tersebut memang merupakan mandat yang mengikat dari arsitektur enterprise.
+
+**Contoh (Example)**
+
+Pengembangan sistem  terikat pada batasan berikut:
+
+- Teknologi: Aplikasi harus dibangun menggunakan <Bahasa/Framework> versi sesuai standar arsitektur perusahaan.
+- Keamanan: Seluruh data sensitif harus dienkripsi saat istirahat (at rest) menggunakan algoritma AES-256.
+- Kepatuhan: Sistem harus mematuhi regulasi mengenai retensi data pengguna selama 5 tahun.
+- Infrastruktur: Deploymen harus dilakukan pada lingkungan cloud di region .
+
+---
+
+## 2.4 Karakteristik Pengguna (User Characteristics)
+
+**Perintah (Instructions)**
+
+Identifikasi kelas pengguna, peran (roles), dan persona yang akan berinteraksi dengan sistem. Jelaskan atribut yang memengaruhi persyaratan seperti tingkat keahlian teknis, tingkat akses (privileges), frekuensi penggunaan, kebutuhan aksesibilitas, dan tujuan utama mereka menggunakan sistem. Definisikan kelas pengguna berdasarkan perilaku dan tanggung jawab, bukan hanya sekadar jabatan formal. Sertakan pula pertimbangan lokalisasi atau kebutuhan khusus pada antarmuka (UI/UX) jika relevan dengan profil pengguna tersebut.
+
+**Contoh (Example)**
+
+| Kelas Pengguna | Tingkat Keahlian | Frekuensi Penggunaan | Hak Akses | Tujuan Utama |
+| --- | --- | --- | --- | --- |
+| Operator Data | Menengah | Tinggi (Harian) | Read/Write Limited | Melakukan input dan validasi data operasional. |
+| System Admin | Ahli | Rendah (Ad-hoc) | Superuser/Full | Mengelola konfigurasi sistem dan hak akses user. |
+| Eksekutif | Awam | Rendah (Mingguan) | Read Only | Memantau KPI melalui laporan ringkasan/dashboard. |
+
+---
+
+## 2.5 Asumsi dan Dependensi (Assumptions and Dependencies)
+
+**Perintah (Instructions)**
+
+Daftarkan faktor-faktor eksternal yang diasumsikan benar (asumsi) dan kondisi yang sangat bergantung pada pihak luar (dependensi) agar proyek dapat berjalan sukses. Asumsi berkaitan dengan kondisi lingkungan, ketersediaan perangkat keras, pola penggunaan pengguna, atau dukungan organisasi. Dependensi berkaitan dengan sistem eksternal, pustaka (libraries), atau tim lain yang berada di luar kendali langsung proyek. Untuk setiap poin, jelaskan potensi dampak yang akan terjadi jika asumsi tersebut terbukti salah atau jika dependensi tidak terpenuhi (risk impact).
+
+**Contoh (Example)**
+
+- Asumsi: Diasumsikan bahwa infrastruktur jaringan internal memiliki latency di bawah ms untuk mendukung sinkronisasi data real-time. Jika gagal, maka performa sinkronisasi akan menurun.
+- Dependensi: Sistem bergantung pada tersedianya API dari yang harus stabil pada versi . Perubahan skema pada API tersebut akan mengharuskan pembaruan pada modul integrasi kita.
+- Dependensi: Tim DevOps menyediakan pipeline CI/CD yang siap digunakan pada <Tanggal/Milestone>.
+
+---
+
+## 2.6 Pembagian Persyaratan (Apportioning of Requirements)
+
+**Perintah (Instructions)**
+
+Jelaskan bagaimana persyaratan utama dialokasikan ke berbagai sub-sistem, layanan, atau iterasi rilis/fase pengembangan. Gunakan tabel referensi silang untuk menunjukkan persyaratan mana yang akan diimplementasikan pada rilis saat ini dan mana yang ditangguhkan ke rilis mendatang. Bagian ini sangat penting bagi Project Manager dan Product Owner untuk melacak peta jalan (roadmap) produk secara teknis. Jika terdapat persyaratan yang alokasinya belum ditentukan, tandai secara eksplisit untuk ditindaklanjuti pada fase desain berikutnya.
+
+**Contoh (Example)**
+
+| ID Persyaratan | Nama Fitur | Alokasi Sub-sistem | Target Rilis | Status |
+| --- | --- | --- | --- | --- |
+| FR-01 | Login & Auth | Auth Service | v1.0.0 | Mandatory |
+| FR-02 | Dashboard | Web Frontend | v1.0.0 | Mandatory |
+| FR-03 | Export PDF | Worker Service | v1.1.0 | Deferred |
+| FR-04 | AI Analytics | ML Engine | v2.0.0 | Future Research |
+
+---

@@ -13,7 +13,25 @@ Gambarkan sistem sebagai "kotak hitam". Identifikasi batasan sistem, aktor lingk
 Tuliskan bagaimana sistem disusun dari bagian-bagian utama (sub-sistem, komponen, atau modul). Jelaskan alokasi tanggung jawab dan bagaimana integrasinya dilakukan. Gunakan UML Component Diagram atau Deployment Diagram.
 
 ### 2.2.3 Logical
-Gambarkan struktur desain statis dalam hal tipe dan implementasinya (class, interface) serta hubungannya. Fokuskan pada enkapsulasi dan dependensi antar entitas menggunakan UML Class Diagram.
+Gambarkan struktur desain statis dalam hal tipe dan implementasinya (class, interface) serta hubungannya. Fokuskan pada enkapsulasi dan dependensi antar entitas menggunakan UML Class Diagram. 
+
+# Diagram Proses Pembuatan Kop (contoh diagram)
+
+```mermaid
+sequenceDiagram
+    participant Customer as Pelanggan
+    participant Barista
+    participant Machine as Mesin Kopi
+
+    Customer->>Barista: Memesan kopi
+    Barista->>Machine: Menggiling kopi
+    Machine-->>Barista: Bubuk kopi siap
+
+    Barista->>Machine: Menyeduh kopi
+    Machine-->>Barista: Kopi selesai
+
+    Barista->>Customer: Menyajikan kopi
+```
 
 ### 2.2.4 Physical
 Tuliskan detail infrastruktur fisik sistem, termasuk konfigurasi perangkat keras, topologi jaringan, dan batasan fisik. Gunakan Hardware Block Diagram atau Cloud Infrastructure Diagram.

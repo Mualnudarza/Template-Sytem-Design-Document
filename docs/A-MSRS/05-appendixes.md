@@ -1,104 +1,107 @@
-# 5. Appendixes
+# BAB 5: APPENDIXES
 
-Bagian ini memuat materi pendukung operasional dan teknis yang tidak mengikat secara langsung (*non-normative*), namun sangat krusial untuk membantu tim pengembang dalam memahami model data dan konteks implementasi Smart Event Analytics Platform (SEAP).
+Bagian ini berisi materi pendukung opsional yang membantu pemahaman teknis lebih mendalam mengenai sistem. Lampiran mencakup detail yang terlalu teknis atau terlalu luas jika dimasukkan ke dalam bab utama, seperti kamus data, dataset contoh, analisis risiko, serta glosarium teknis tambahan yang bersifat non-normatif.
+
+---
 
 ## 5.1 Kamus Data (Data Dictionary)
 
-Berikut adalah rincian skema tabel pada basis data PostgreSQL yang digunakan oleh *Microservices* SEAP:
+**Perintah (Instructions)**
 
-### Tabel `users` (User Service & Auth Service)
-Menyimpan data identitas dan kredensial pengguna.
-| Kolom | Tipe Data | Keterangan |
-| :--- | :--- | :--- |
-| `id` | UUID | *Primary Key* |
-| `name` | VARCHAR(100) | Nama lengkap pengguna |
-| `email` | VARCHAR(100) | Alamat surel (Unik) |
-| `password_hash` | TEXT | Kata sandi yang telah dienkripsi (bcrypt) |
-| `role` | VARCHAR(20) | Peran sistem (`admin` atau `mahasiswa`) |
-| `created_at` | TIMESTAMP | Waktu pendaftaran akun |
+Sediakan definisi teknis mengenai elemen data yang digunakan dalam sistem. Bagian ini harus merinci nama field, tipe data, batasan (constraints), deskripsi fungsional, serta relasi antar entitas jika tidak dijelaskan secara detail di Bab 3. Informasi ini sangat krusial bagi Database Administrator (DBA), Backend Engineer, dan System Analyst untuk menjaga integritas data di seluruh lapisan aplikasi. Jika terdapat skema relasional yang kompleks, gunakan diagram Mermaid ERD untuk memvisualisasikan hubungan antar tabel atau koleksi data.
 
-### Tabel `events` (Event Service)
-Menyimpan entitas acara yang dikelola oleh Admin.
-| Kolom | Tipe Data | Keterangan |
-| :--- | :--- | :--- |
-| `id` | UUID | *Primary Key* |
-| `title` | VARCHAR(255) | Judul acara |
-| `description` | TEXT | Deskripsi lengkap acara |
-| `category` | VARCHAR(50) | Kategori acara (misal: Teknologi, Bisnis, Seni) |
-| `date` | TIMESTAMP | Jadwal pelaksanaan acara |
-| `location` | VARCHAR(255) | Tempat pelaksanaan atau tautan daring |
-| `created_by` | UUID | *Foreign Key* ke tabel `users` (Admin pembuat) |
-| `created_at` | TIMESTAMP | Waktu acara dibuat ke sistem |
+**Contoh (Example)**
 
-### Tabel `registrations` (Registration Service)
-Menyimpan relasi (pendaftaran) antara mahasiswa dan acara.
-| Kolom | Tipe Data | Keterangan |
-| :--- | :--- | :--- |
-| `id` | UUID | *Primary Key* |
-| `user_id` | UUID | *Foreign Key* ke tabel `users` |
-| `event_id` | UUID | *Foreign Key* ke tabel `events` |
-| `status` | VARCHAR(20) | Status partisipasi (`registered`, `attended`, `cancelled`) |
-| `registered_at` | TIMESTAMP | Waktu mahasiswa melakukan klik daftar |
+Berikut adalah rincian entitas utama pada modul :
 
-### Tabel `feedbacks` (Feedback Service)
-Menyimpan ulasan dari mahasiswa pasca-acara (komponen vital untuk *Recommendation Engine*).
-| Kolom | Tipe Data | Keterangan |
-| :--- | :--- | :--- |
-| `id` | UUID | *Primary Key* |
-| `user_id` | UUID | *Foreign Key* ke tabel `users` |
-| `event_id` | UUID | *Foreign Key* ke tabel `events` |
-| `rating` | INT | Skala penilaian 1 hingga 5 |
-| `comment` | TEXT | Ulasan naratif opsional |
-| `created_at` | TIMESTAMP | Waktu ulasan dikirim |
+| Nama Field | Tipe Data | Batasan | Deskripsi |
+| --- | --- | --- | --- |
+| user_id | UUID | Primary Key, Not Null | Identitas unik global untuk setiap pengguna. |
+| transaction_amount | Decimal(18,2) | Min: 0.01 | Nilai moneter transaksi dalam mata uang . |
+| status_code | Enum | ['PENDING', 'SUCCESS'] | Status siklus hidup transaksi saat ini. |
 
-### Tabel `analytics_logs` (Analytics Service)
-Menyimpan hasil komputasi *cron job* untuk dasbor Admin.
-| Kolom | Tipe Data | Keterangan |
-| :--- | :--- | :--- |
-| `id` | UUID | *Primary Key* |
-| `event_id` | UUID | *Foreign Key* ke tabel `events` |
-| `total_participants` | INT | Agregat jumlah `registrations` berstatus `attended` |
-| `avg_rating` | FLOAT | Rata-rata dari tabel `feedbacks` untuk acara tersebut |
-| `calculated_at` | TIMESTAMP | Waktu terakhir log ini dihitung ulang |
+```mermaid
+erDiagram
+    USER ||--o{ TRANSACTION : makes
+    TRANSACTION ||--|| STATUS_LOG : records
+    USER {
+        string user_id PK
+        string email UK
+    }
+    TRANSACTION {
+        string trans_id PK
+        float amount
+    }
+```
 
 ---
 
-## 5.2 Standar Respons Kode API (API Status Codes)
+## 5.2 Dataset Contoh dan Skema API (Sample Datasets and API Schemas)
 
-Semua layanan di belakang *API Gateway* wajib mematuhi standar respons HTTP berikut untuk menjaga konsistensi *Frontend*:
+**Perintah (Instructions)**
 
-*   **200 OK:** Permintaan berhasil dieksekusi (terutama *GET* dan *PUT*).
-*   **201 Created:** Sumber daya baru berhasil dibuat (terutama *POST* pada registrasi atau pembuatan acara).
-*   **400 Bad Request:** *Payload* JSON tidak valid atau struktur tidak sesuai.
-*   **401 Unauthorized:** Token JWT tidak ada, kedaluwarsa, atau tidak valid.
-*   **403 Forbidden:** Token JWT valid, tetapi *role* tidak memiliki izin (misal: Mahasiswa memanggil fungsi khusus Admin).
-*   **404 Not Found:** ID sumber daya tidak ditemukan di basis data.
-*   **409 Conflict:** Terjadi duplikasi data (misal: *email* sudah digunakan, mahasiswa mendaftar acara yang sama 2x).
-*   **500 Internal Server Error:** Terjadi kegagalan *backend* atau koneksi basis data terputus.
+Sajikan contoh data nyata dalam format JSON, XML, atau CSV yang merepresentasikan input dan output sistem. Bagian ini membantu Frontend Developer dan QA Engineer dalam melakukan mocking data atau penyusunan skrip uji otomatis. Sertakan skema respon untuk kondisi sukses dan kondisi galat (error) guna memastikan konsistensi kontrak API. Batasi pembahasan pada contoh yang paling mewakili skenario jalur utama (happy path) dan skenario batas (edge cases).
 
----
+**Contoh (Example)**
 
-## 5.3 Contoh Format Data Rekomendasi (Sample ML Input)
+Contoh payload respon untuk endpoint <GET /api/v1/profile>:
 
-Sebagai gambaran bagi *Data Engineer*, berikut adalah contoh struktur matriks *user-item* virtual (direpresentasikan dalam Pandas DataFrame) yang ditarik secara periodik dari pangkalan data untuk melatih model *Collaborative Filtering*:
-```json
-[
-  {
-    "user_id": "u-101",
-    "event_id": "e-001",
-    "category": "Tech",
-    "rating": 5
+```jsx
+{
+  "status": "success",
+  "data": {
+    "profile_id": "<PRO-12345>",
+    "full_name": "<Nama Pengguna>",
+    "preferences": {
+      "language": "id",
+      "notifications": true
+    }
   },
-  {
-    "user_id": "u-101",
-    "event_id": "e-002",
-    "category": "Business",
-    "rating": 3
-  },
-  {
-    "user_id": "u-102",
-    "event_id": "e-001",
-    "category": "Tech",
-    "rating": 4
+  "metadata": {
+    "request_id": "<REQ-ID-9900>",
+    "timestamp": "2024-05-20T10:00:00Z"
   }
-]
+}
+```
+
+---
+
+## 5.3 Analisis Dampak Perubahan (Change Impact Analysis)
+
+**Perintah (Instructions)**
+
+Jelaskan analisis mengenai bagaimana perubahan pada satu komponen sistem dapat memengaruhi komponen lainnya. Bagian ini digunakan oleh Software Architect dan Project Manager untuk menilai risiko teknis saat melakukan pembaruan atau refaktor. Fokuskan pada dependensi antar modul, potensi regresi pada integrasi pihak ketiga, serta dampak pada basis data yang sudah ada (legacy data). Gunakan diagram Mermaid tipe graph untuk memetakan rantai ketergantungan (dependency chain) antar layanan atau modul inti.
+
+**Contoh (Example)**
+
+Analisis dampak untuk migrasi  ke :
+
+- Dampak Langsung: Modul harus diperbarui untuk mendukung skema token baru.
+- Dampak Tidak Langsung: Cache session pada akan di-invalidate secara massal.
+- Risiko: Potensi lonjakan latensi login selama 5 menit pertama pasca-deployment.
+
+```mermaid
+graph TD
+    A[Modul Auth v2] -->|Breaking Change| B[API Gateway]
+    B --> C[Mobile App]
+    B --> D[Web Dashboard]
+    A -.->|Cache Invalidation| E[(Redis Session Store)]
+```
+
+---
+
+## 5.4 Glosarium Teknis dan Referensi Pendukung (Technical Glossary & References)
+
+**Perintah (Instructions)**
+
+Daftarkan istilah-istilah teknis sangat spesifik, library pihak ketiga, atau standar industri yang tidak tercantum dalam Bab 1. Lampirkan pula tautan ke dokumen desain eksternal, paper penelitian, atau wiki internal yang menjadi inspirasi arsitektur. Bagian ini berfungsi sebagai pusat pengetahuan bagi anggota tim baru (onboarding) agar mereka dapat memahami terminologi dan referensi yang digunakan dalam pengembangan sistem ini. Pastikan setiap entri memiliki definisi yang jelas dan tautan referensi yang masih aktif.
+
+**Contoh (Example)**
+
+| Istilah | Referensi / Tautan | Penjelasan |
+| --- | --- | --- |
+| Idempotency Key | <RFC 7231> | Mekanisme untuk menjamin bahwa request yang sama tidak dieksekusi dua kali. |
+| Blue-Green Deployment |  | Strategi rilis yang digunakan untuk meminimalkan downtime sistem. |
+| Circuit Breaker |  | Pola desain untuk menghentikan kegagalan berantai pada microservices. |
+
+---
