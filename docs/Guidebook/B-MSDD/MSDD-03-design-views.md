@@ -3,78 +3,8 @@
 Bagian ini merupakan inti dokumen MSDD, di mana elemen arsitektural secara aktual digambarkan dan didokumentasikan berdasarkan viewpoint yang telah dipilih pada Bab 2. Setiap Design View harus cukup preskriptif untuk dapat diimplementasikan oleh developer, sekaligus cukup deskriptif bagi tim operasional yang memeliharanya.
 
 ---
+### [INI ADALAH INFORMASI DASAR UNTUK MEMBANTU DALAM MENGERJAKAN BAGIAN INI]
 
-## 3.0 Standar dan Aturan Penulisan Design View (Referensi Internal)
-
-Bagian ini merupakan referensi teknis wajib bagi seluruh penulis dokumen MSDD untuk menjamin konsistensi format dan keterlacakan. **Bagian ini bersifat informatif untuk fase penyusunan dan wajib dihapus dari versi final dokumen setelah seluruh Design View selesai disusun.**
-
----
-
-**Perintah (Instructions)**
-
-Seluruh Design View pada sub-bab berikutnya wajib menggunakan template standar berikut. Pastikan setiap view memiliki ID yang unik, viewpoint yang terdaftar di Bab 2.2, representasi yang memadai (narasi dan/atau diagram), serta referensi silang ke MSRS dan/atau MADR yang relevan.
-
-**Template Wajib Representasi Desain:**
-
-```
-- ID: DV-[NNN]-{judul-singkat}
-  Contoh: DV-001-payment-gateway-interaction
-
-- Title: [Nama singkat dan deskriptif dari tinjauan desain]
-
-- Viewpoint: [Nama Viewpoint yang digunakan sesuai daftar di Bab 2.2]
-
-- Representation:
-  [Penjelasan naratif, pseudocode, atau diagram Mermaid yang memvisualisasikan desain]
-
-- More Information:
-  - REQ Reference: [REQ-ID dari MSRS yang diimplementasikan oleh desain ini]
-  - ADR Reference: [Nama/path file MADR yang menjustifikasi keputusan desain ini]
-```
-
-**Aturan Identifikasi ID Design View:**
-
-- Format: `DV-[NNN]-{judul}` di mana `NNN` adalah nomor urut tiga digit.
-- ID bersifat unik dan tidak boleh diubah setelah ditetapkan untuk menjaga keterlacakan.
-- Judul menggunakan format *kebab-case* (huruf kecil, kata dipisahkan tanda hubung).
-
-**Catatan:** Setiap Design View harus mereferensikan minimal satu ID persyaratan dari MSRS (`More Information: REQ Reference`). Design View tanpa referensi MSRS dianggap tidak lengkap dan harus diklarifikasi sebelum dokumen difinalisasi.
-
-### Contoh (Example)
-
----
-
-**ID:** `DV-001-user-authentication-flow`
-
-**Title:** Alur Otentikasi Pengguna
-
-**Viewpoint:** Interaction
-
-**Representation:**
-
-Sistem mengimplementasikan alur otentikasi berbasis OAuth2 Authorization Code Flow dengan PKCE. Permintaan masuk dari klien diteruskan ke Auth Service yang memvalidasi kredensial terhadap Identity Provider (IdP). Setelah validasi berhasil, Access Token (JWT) dengan masa berlaku 15 menit dan Refresh Token dengan masa berlaku 7 hari diterbitkan dan dikembalikan ke klien.
-
-```mermaid
-sequenceDiagram
-    participant Client as Klien (Browser/App)
-    participant GW as API Gateway
-    participant Auth as Auth Service
-    participant IdP as Identity Provider
-
-    Client->>GW: POST /auth/login (credentials)
-    GW->>Auth: Forward Request
-    Auth->>IdP: Validate Credentials
-    IdP-->>Auth: Validation Result
-    Auth-->>GW: JWT Access Token + Refresh Token
-    GW-->>Client: 200 OK { access_token, refresh_token }
-    Note over Client: Simpan token di memory (bukan localStorage)
-```
-
-**More Information:**
-- REQ Reference: `REQ-FUNC-001` (Login & Autentikasi), `REQ-SEC-001` (Token Management)
-- ADR Reference: `docs/decisions/ADR-001-use-oauth2-pkce.md`
-
----
 
 ## 3.1 Context View
 

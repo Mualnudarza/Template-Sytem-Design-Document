@@ -2,7 +2,7 @@
 
 ## 1.1 Tujuan Dokumen (Document Purpose)
 
-## 1.2 Ruang Lingkup Produk (Product Scope)
+## 1.2 Cakupan Subjek (Subject Scope)
 
 ## 1.3 Definisi, Akronim, dan Singkatan (Definitions, Acronyms, and Abbreviations)
 
@@ -13,4 +13,4 @@
 
 ## 1.4 Referensi (References)
 
-## 1.5 Ikhtisar Dokumen (Document Overview)
+## 1.5 Gambaran Umum Dokumen (Document Overview)

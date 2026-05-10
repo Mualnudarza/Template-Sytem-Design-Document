@@ -40,6 +40,24 @@ Bagian ini mengidentifikasi sudut pandang (viewpoints) arsitektur yang dipilih u
 
 Dari daftar 15 viewpoint arsitektur standar yang tersedia, pilih dan dokumentasikan hanya viewpoint yang paling relevan untuk sistem yang dirancang. Tim tidak diwajibkan menggunakan seluruh 15 viewpoint; pilih yang secara signifikan menjawab Stakeholder Concerns yang telah diidentifikasi pada sub-bab 2.1. Untuk setiap viewpoint yang dipilih, cantumkan nama, tujuan, jenis diagram yang digunakan, dan stakeholder yang dilayani. Viewpoint yang tidak digunakan harus dinyatakan secara eksplisit beserta alasannya untuk menghindari ambiguitas.
 
+**Daftar 15 Sudut Pandang Arsitektur (Viewpoints):**
+
+1. **Context:** Sistem sebagai *black-box*. Menjelaskan batasan sistem, aktor lingkungan, dan layanan eksternal. (Diagram: *UML Use Case, C4 Context*).
+2. **Composition:** Bagaimana sistem dirakit dan dipecah menjadi subsistem/komponen/modul utama. Menentukan strategi *buy-vs-build*. (Diagram: *UML Component, Hierarchical Decomposition*).
+3. **Logical:** Struktur rancangan statis dari tipe dan implementasinya, enkapsulasi, serta abstraksi. (Diagram: *UML Class, UML Object*).
+4. **Physical:** Topologi fisik dan infrastruktur tangibel tempat sistem berjalan. (Diagram: *Hardware Block, Network Topology, Rack Layout*).
+5. **Structure:** Organisasi internal dari entitas yang lebih kompleks, mendokumentasikan antarmuka (*ports*) dan konektor (*connectors*). (Diagram: *UML Composite Structure, C4 Container*).
+6. **Dependency:** Pemetaan grafis yang menunjukkan integrasi dan arah ketergantungan antar elemen (*uses, requires, provides*). Digunakan untuk analisis dampak perubahan. (Diagram: *Dependency Graph, UML Package*).
+7. **Information:** Semantik persisten data, hubungan antar data, mekanisme pengelolaan/akses data, dan pemeliharaan integritas. (Diagram: *ERD, Logical Data Model*).
+8. **Interface:** Spesifikasi kontrak kolaborasi yang terlihat oleh publik/sistem eksternal. (Diagram: *API Specs, IDL, Function Signatures*).
+9. **Interaction:** Kolaborasi lintas entitas saat *runtime*; mencakup urutan pesan, sinkronisasi waktu, perambatan *error*, dan transisi logika. (Diagram: *UML Sequence, BPMN*).
+10. **Algorithm:** Rincian logika internal (*time-space complexity*) dari suatu operasi kritikal (langkah, keputusan, iterasi, penanganan masalah deterministik/AI). (Diagram: *Pseudocode, Flowchart*).
+11. **State Dynamics:** Rincian mengenai bagaimana komponen merespons stimulus tak terduga dan bagaimana sistem bertransisi antar-mode. (Diagram: *UML State Machine, Automata*).
+12. **Concurrency:** Penanganan pemrosesan paralel, struktur antrean/utas (*threads*), mekanisme penguncian (*locking*), kontrol sinkronisasi, dan pencegahan *race-conditions*.
+13. **Patterns:** Mengidentifikasi ide desain yang digunakan ulang (*Design Patterns* seperti MVC, *Microservices*, *Event-Driven*) yang memandu konsistensi arsitektur.
+14. **Deployment:** Bagaimana entitas perangkat lunak dipetakan ke dalam lingkungan eksekusi fisik atau komputasi *cloud*. (Diagram: *UML Deployment, IaC Topology, CI/CD pipelines*).
+15. **Resources:** Bagaimana sistem mengelola utilitas sumber daya terbatas secara efisien (seperti alokasi memori, batas kuota koneksi basis data, prioritas *bandwidth*).
+
 **Catatan:** Setiap viewpoint yang dipilih di sini wajib memiliki minimal satu Design View yang sesuai pada Bab 3. Konsistensi antara daftar viewpoint dan isi Bab 3 merupakan persyaratan integritas dokumen ini.
 
 ### Contoh (Example)

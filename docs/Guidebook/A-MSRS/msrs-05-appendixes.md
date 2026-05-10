@@ -4,8 +4,9 @@ Bagian ini berisi materi pendukung opsional yang membantu pemahaman teknis lebih
 
 ---
 
-## 5.1 Kamus Data (Data Dictionary)
 
+## [INI ADALAH CONTOH!!!]
+## 5.1 Kamus Data (Data Dictionary)
 **Perintah (Instructions)**
 
 Sediakan definisi teknis mengenai elemen data yang digunakan dalam sistem. Bagian ini harus merinci nama field, tipe data, batasan (constraints), deskripsi fungsional, serta relasi antar entitas jika tidak dijelaskan secara detail di Bab 3. Informasi ini sangat krusial bagi Database Administrator (DBA), Backend Engineer, dan System Analyst untuk menjaga integritas data di seluruh lapisan aplikasi. Jika terdapat skema relasional yang kompleks, gunakan diagram Mermaid ERD untuk memvisualisasikan hubungan antar tabel atau koleksi data.

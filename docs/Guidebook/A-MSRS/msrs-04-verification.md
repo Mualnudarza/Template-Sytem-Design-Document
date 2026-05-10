@@ -2,7 +2,15 @@
 
 Bagian ini menjelaskan bagaimana setiap persyaratan yang telah didefinisikan pada Bab 3 akan diverifikasi untuk memberikan bukti objektif mengenai kepatuhan sistem. Bab ini mencakup metodologi pengujian, matriks ketertelusuran verifikasi, serta deskripsi lingkungan dan alat yang digunakan untuk menjamin kualitas produk sebelum rilis.
 
+**Berikut adalah kerangka dari template ini:**
+| Requirement ID | Verification Method | Test/Artifact Link | Status | Evidence |
+| --- | --- | --- | --- | --- |
+|  |  |  |  |  |
+|  |  |  |  |  |
+
 ---
+
+### [INI ADALAH INFORMASI DASAR UNTUK MEMBANTU DALAM MENGERJAKAN BAGIAN INI]
 
 ## 4.1 Metodologi dan Pendekatan Verifikasi
 
