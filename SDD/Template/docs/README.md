@@ -39,24 +39,6 @@ Decisions (MADR)
 
 ---
 
-# Aturan Penamaan File
-
-| Jenis | Format |
-|---|---|
-| Requirement | `REQ-[AREA]-[NNN]` |
-| Design View | `[NNN]-<title>` |
-| Decision Record | `[NNNN]-<title>` |
-
-Contoh:
-
-```text
-REQ-FUNC-001
-001-payment-service
-0001-use-postgresql
-```
-
----
-
 # Konvensi Dokumentasi
 
 - Semua dokumen ditulis menggunakan format Markdown (`.md`)
