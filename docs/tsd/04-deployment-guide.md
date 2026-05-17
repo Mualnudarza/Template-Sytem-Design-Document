@@ -36,22 +36,22 @@ Dokumen ini menjelaskan seluruh proses deployment project dari build hingga veri
 
 ## Daftar Isi
 
-1. [Deployment Overview](about:blank#1-deployment-overview)
-2. [Environment Overview](about:blank#2-environment-overview)
-3. [Configuration Overview](about:blank#3-configuration-overview)
-4. [Build Process](about:blank#4-build-process)
-5. [Deployment Process](about:blank#5-deployment-process)
-6. [Rollback Process](about:blank#6-rollback-process)
-7. [Migration Deployment](about:blank#7-migration-deployment)
-8. [Scheduler Deployment](about:blank#8-scheduler-deployment)
-9. [Queue Deployment](about:blank#9-queue-deployment)
-10. [Restart Service](about:blank#10-restart-service)
-11. [Logging Location](about:blank#11-logging-location)
-12. [Monitoring Overview](about:blank#12-monitoring-overview)
-13. [Verification Deployment](about:blank#13-verification-deployment)
-14. [Backup Strategy](about:blank#14-backup-strategy)
-15. [Deployment Checklist](about:blank#15-deployment-checklist)
-16. [Dependency Deployment](about:blank#16-dependency-deployment)
+1. [Deployment Overview](#1-deployment-overview)
+2. [Environment Overview](#2-environment-overview)
+3. [Configuration Overview](#3-configuration-overview)
+4. [Build Process](#4-build-process)
+5. [Deployment Process](#5-deployment-process)
+6. [Rollback Process](#6-rollback-process)
+7. [Migration Deployment](#7-migration-deployment)
+8. [Scheduler Deployment](#8-scheduler-deployment)
+9. [Queue Deployment](#9-queue-deployment)
+10. [Restart Service](#10-restart-service)
+11. [Logging Location](#11-logging-location)
+12. [Monitoring Overview](#12-monitoring-overview)
+13. [Verification Deployment](#13-verification-deployment)
+14. [Backup Strategy](#14-backup-strategy)
+15. [Deployment Checklist](#15-deployment-checklist)
+16. [Dependency Deployment](#16-dependency-deployment)
 
 ---
 

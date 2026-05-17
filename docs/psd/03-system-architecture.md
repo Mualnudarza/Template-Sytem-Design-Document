@@ -34,21 +34,21 @@ Baca dokumen ini setelah `docs/psd/01-project-overview.md`. Setelah membaca doku
 
 ## Daftar Isi
 
-1. [Architecture Overview](about:blank#1-architecture-overview)
-2. [Struktur Komponen Sistem](about:blank#2-struktur-komponen-sistem)
-3. [Backend Overview](about:blank#3-backend-overview)
-4. [Frontend Overview](about:blank#4-frontend-overview)
-5. [Database Overview](about:blank#5-database-overview)
-6. [Authentication Overview](about:blank#6-authentication-overview)
-7. [Request Flow Overview](about:blank#7-request-flow-overview)
-8. [Module Interaction](about:blank#8-module-interaction)
-9. [Dependency Overview](about:blank#9-dependency-overview)
-10. [Integration Overview](about:blank#10-integration-overview)
-11. [Scheduler dan Queue Overview](about:blank#11-scheduler-dan-queue-overview)
-12. [Deployment Environment Overview](about:blank#12-deployment-environment-overview)
-13. [Logging Overview](about:blank#13-logging-overview)
-14. [Scalability Consideration](about:blank#14-scalability-consideration)
-15. [Maintainability Consideration](about:blank#15-maintainability-consideration)
+1. [Architecture Overview](#1-architecture-overview)
+2. [Struktur Komponen Sistem](#2-struktur-komponen-sistem)
+3. [Backend Overview](#3-backend-overview)
+4. [Frontend Overview](#4-frontend-overview)
+5. [Database Overview](#5-database-overview)
+6. [Authentication Overview](#6-authentication-overview)
+7. [Request Flow Overview](#7-request-flow-overview)
+8. [Module Interaction](#8-module-interaction)
+9. [Dependency Overview](#9-dependency-overview)
+10. [Integration Overview](#10-integration-overview)
+11. [Scheduler dan Queue Overview](#11-scheduler-dan-queue-overview)
+12. [Deployment Environment Overview](#12-deployment-environment-overview)
+13. [Logging Overview](#13-logging-overview)
+14. [Scalability Consideration](#14-scalability-consideration)
+15. [Maintainability Consideration](#15-maintainability-consideration)
 
 ---
 

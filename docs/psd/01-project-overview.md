@@ -34,21 +34,21 @@ Setelah membaca dokumen ini, developer baru diharapkan mampu menjawab:
 
 ## Daftar Isi
 
-1. [Identitas Project](about:blank#1-identitas-project)
-2. [Tujuan Project](about:blank#2-tujuan-project)
-3. [Deskripsi Sistem](about:blank#3-deskripsi-sistem)
-4. [Role Pengguna](about:blank#7-role-pengguna)
-5. [Module Utama](about:blank#8-module-utama)
-6. [Feature Utama](about:blank#9-feature-utama)
-7. [High-Level Flow System](about:blank#10-high-level-flow-system)
-8. [Dependency Utama](about:blank#11-dependency-utama)
-9. [Integrasi Utama](about:blank#12-integrasi-utama)
-10. [Environment Overview](about:blank#13-environment-overview)
-11. [Repository Overview](about:blank#14-repository-overview)
-12. [Struktur Dokumentasi](about:blank#15-struktur-dokumentasi)
-13. [Batasan Sistem](about:blank#16-batasan-sistem)
-14. [Asumsi Sistem](about:blank#17-asumsi-sistem)
-15. [Glossary Project](about:blank#18-glossary-project)
+1. [Identitas Project](#1-identitas-project)
+2. [Tujuan Project](#2-tujuan-project)
+3. [Deskripsi Sistem](#3-deskripsi-sistem)
+4. [Role Pengguna](#7-role-pengguna)
+5. [Module Utama](#8-module-utama)
+6. [Feature Utama](#9-feature-utama)
+7. [High-Level Flow System](#10-high-level-flow-system)
+8. [Dependency Utama](#11-dependency-utama)
+9. [Integrasi Utama](#12-integrasi-utama)
+10. [Environment Overview](#13-environment-overview)
+11. [Repository Overview](#14-repository-overview)
+12. [Struktur Dokumentasi](#15-struktur-dokumentasi)
+13. [Batasan Sistem](#16-batasan-sistem)
+14. [Asumsi Sistem](#17-asumsi-sistem)
+15. [Glossary Project](#18-glossary-project)
 
 ---
 

@@ -34,18 +34,18 @@ Dokumen ini adalah referensi teknis untuk seluruh endpoint API project ini. Baca
 
 ## Daftar Isi
 
-1. [API Overview](about:blank#1-api-overview)
-2. [Authentication Overview](about:blank#2-authentication-overview)
-3. [Response Structure](about:blank#3-response-structure)
-4. [Error Response](about:blank#4-error-response)
-5. [Request Flow](about:blank#5-request-flow)
-6. [Middleware Terkait](about:blank#6-middleware-terkait)
-7. [Referensi Kode Error](about:blank#7-referensi-kode-error)
-8. [Matriks Akses Endpoint](about:blank#8-matriks-akses-endpoint)
-9. [Module: Authentication](about:blank#9-module-authentication)
-10. [Module: User Management](about:blank#10-module-user-management)
-11. [Module: [Nama Module]](about:blank#11-module-nama-module)
-12. [Integration Impact](about:blank#12-integration-impact)
+1. [API Overview](#1-api-overview)
+2. [Authentication Overview](#2-authentication-overview)
+3. [Response Structure](#3-response-structure)
+4. [Error Response](#4-error-response)
+5. [Request Flow](#5-request-flow)
+6. [Middleware Terkait](#6-middleware-terkait)
+7. [Referensi Kode Error](#7-referensi-kode-error)
+8. [Matriks Akses Endpoint](#8-matriks-akses-endpoint)
+9. [Module: Authentication](#9-module-authentication)
+10. [Module: User Management](#10-module-user-management)
+11. [Module: [Nama Module]](#11-module-nama-module)
+12. [Integration Impact](#12-integration-impact)
 
 ---
 

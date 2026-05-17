@@ -32,21 +32,21 @@ Dokumen ini menjawab tiga pertanyaan:
 
 ## Daftar Isi
 
-1. [Tujuan TSD](about:blank#1-tujuan-tsd)
-2. [Ruang Lingkup TSD](about:blank#2-ruang-lingkup-tsd)
-3. [Hubungan PSD dengan TSD](about:blank#3-hubungan-psd-dengan-tsd)
-4. [Technical Documentation Principle](about:blank#4-technical-documentation-principle)
-5. [Dependency Documentation Principle](about:blank#5-dependency-documentation-principle)
-6. [Flow Documentation Principle](about:blank#6-flow-documentation-principle)
-7. [Database Documentation Principle](about:blank#7-database-documentation-principle)
-8. [API Documentation Principle](about:blank#8-api-documentation-principle)
-9. [Deployment Documentation Principle](about:blank#9-deployment-documentation-principle)
-10. [Modularization Principle](about:blank#10-modularization-principle)
-11. [Consistency Principle](about:blank#11-consistency-principle)
-12. [Update Workflow](about:blank#12-update-workflow)
-13. [Documentation Lifecycle](about:blank#13-documentation-lifecycle)
-14. [Versioning Documentation](about:blank#14-versioning-documentation)
-15. [Dependency Mapping Principle](about:blank#15-dependency-mapping-principle)
+1. [Tujuan TSD](#1-tujuan-tsd)
+2. [Ruang Lingkup TSD](#2-ruang-lingkup-tsd)
+3. [Hubungan PSD dengan TSD](#3-hubungan-psd-dengan-tsd)
+4. [Technical Documentation Principle](#4-technical-documentation-principle)
+5. [Dependency Documentation Principle](#5-dependency-documentation-principle)
+6. [Flow Documentation Principle](#6-flow-documentation-principle)
+7. [Database Documentation Principle](#7-database-documentation-principle)
+8. [API Documentation Principle](#8-api-documentation-principle)
+9. [Deployment Documentation Principle](#9-deployment-documentation-principle)
+10. [Modularization Principle](#10-modularization-principle)
+11. [Consistency Principle](#11-consistency-principle)
+12. [Update Workflow](#12-update-workflow)
+13. [Documentation Lifecycle](#13-documentation-lifecycle)
+14. [Versioning Documentation](#14-versioning-documentation)
+15. [Dependency Mapping Principle](#15-dependency-mapping-principle)
 
 ---
 

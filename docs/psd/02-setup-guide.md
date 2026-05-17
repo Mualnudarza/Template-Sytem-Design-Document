@@ -37,22 +37,22 @@ Dokumen ini ditulis untuk dibaca dari atas ke bawah secara berurutan. Setiap lan
 
 ## Daftar Isi
 
-1. [Dependency Project](about:blank#2-dependency-project)
-2. [Software Requirement](about:blank#3-software-requirement)
-3. [Clone Repository](about:blank#4-clone-repository)
-4. [Install Dependency](about:blank#5-install-dependency)
-5. [Setup Environment](about:blank#6-setup-environment)
-6. [Struktur Environment Project](about:blank#7-struktur-environment-project)
-7. [Setup Configuration](about:blank#8-setup-configuration)
-8. [Setup Database](about:blank#9-setup-database)
-9. [Migration](about:blank#10-migration)
-10. [Seed Data](about:blank#11-seed-data)
-11. [Menjalankan Backend](about:blank#12-menjalankan-backend)
-12. [Menjalankan Frontend](about:blank#13-menjalankan-frontend)
-13. [Menjalankan Scheduler dan Queue](about:blank#14-menjalankan-scheduler-dan-queue)
-14. [Validasi Setup Berhasil](about:blank#15-validasi-setup-berhasil)
-15. [Common Command](about:blank#16-common-command)
-16. [Common Setup Issue](about:blank#17-common-setup-issue)
+1. [Dependency Project](#2-dependency-project)
+2. [Software Requirement](#3-software-requirement)
+3. [Clone Repository](#4-clone-repository)
+4. [Install Dependency](#5-install-dependency)
+5. [Setup Environment](#6-setup-environment)
+6. [Struktur Environment Project](#7-struktur-environment-project)
+7. [Setup Configuration](#8-setup-configuration)
+8. [Setup Database](#9-setup-database)
+9. [Migration](#10-migration)
+10. [Seed Data](#11-seed-data)
+11. [Menjalankan Backend](#12-menjalankan-backend)
+12. [Menjalankan Frontend](#13-menjalankan-frontend)
+13. [Menjalankan Scheduler dan Queue](#14-menjalankan-scheduler-dan-queue)
+14. [Validasi Setup Berhasil](#15-validasi-setup-berhasil)
+15. [Common Command](#16-common-command)
+16. [Common Setup Issue](#17-common-setup-issue)
 
 ---
 
@@ -396,7 +396,7 @@ Output yang diharapkan: seluruh service berstatus `running` atau `healthy`. Tida
 
 | Service | Container Name | Port Lokal | Keterangan |
 | --- | --- | --- | --- |
-| [Database](about:blank#database) | `[NAMA CONTAINER]` | `[PORT HOST]:[PORT CONTAINER]` | [Deskripsi singkat] |
+| [Database](#database) | `[NAMA CONTAINER]` | `[PORT HOST]:[PORT CONTAINER]` | [Deskripsi singkat] |
 | [Cache] | `[NAMA CONTAINER]` | `[PORT HOST]:[PORT CONTAINER]` | [Deskripsi singkat] |
 | [Queue] | `[NAMA CONTAINER]` | `[PORT HOST]:[PORT CONTAINER]` | [Deskripsi singkat] |
 

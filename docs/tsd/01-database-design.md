@@ -33,18 +33,18 @@ Dokumen ini menjelaskan seluruh struktur Database project ini. Baca bagian yang 
 
 ## Daftar Isi
 
-1. [Database Overview](about:blank#1-database-overview)
-2. [ERD Overview](about:blank#2-erd-overview)
-3. [Daftar Tabel dan Fungsinya](about:blank#3-daftar-tabel-dan-fungsinya)
-4. [Relasi Antar Tabel](about:blank#4-relasi-antar-tabel)
-5. [Audit Field](about:blank#5-audit-field)
-6. [Soft Delete](about:blank#6-soft-delete)
-7. [Detail Tabel: `users`](about:blank#7-detail-tabel-users)
-8. [Detail Tabel: `sessions`](about:blank#8-detail-tabel-sessions)
-9. [Detail Tabel: `[dan seterusnya...]`](about:blank#9-detail-tabel-nama_tabel)
-10. [Dependency Antar Tabel](about:blank#10-dependency-antar-tabel)
-11. [Migration Overview](about:blank#11-migration-overview)
-12. [Data Consistency Consideration](about:blank#12-data-consistency-consideration)
+1. [Database Overview](#1-database-overview)
+2. [ERD Overview](#2-erd-overview)
+3. [Daftar Tabel dan Fungsinya](#3-daftar-tabel-dan-fungsinya)
+4. [Relasi Antar Tabel](#4-relasi-antar-tabel)
+5. [Audit Field](#5-audit-field)
+6. [Soft Delete](#6-soft-delete)
+7. [Detail Tabel: `users`](#7-detail-tabel-users)
+8. [Detail Tabel: `sessions`](#8-detail-tabel-sessions)
+9. [Detail Tabel: `[dan seterusnya...]`](#9-detail-tabel-nama_tabel)
+10. [Dependency Antar Tabel](#10-dependency-antar-tabel)
+11. [Migration Overview](#11-migration-overview)
+12. [Data Consistency Consideration](#12-data-consistency-consideration)
 
 ---
 
